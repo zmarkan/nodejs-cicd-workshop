@@ -10,14 +10,13 @@ jobs:
       - run:
           name: Install dependencies
           command: npm install
-      
-      - run: 
-          name: Run Unit Tests
-          command: |
-            mkdir ~/test-results
-            ./node_modules/mocha/bin/mocha test/ --reporter mocha-junit-reporter --reporter-options reportDir=~/test-results,reportFilename=test-results
+      - run: mkdir ~/junit
+      - run:
+          name: Run unit tests
+          command: ./node_modules/mocha/bin/mocha test --reporter mocha-junit-reporter
           environment:
-            MOCHA_FILE: ~/test-results/test-results.xml
+            MOCHA_FILE: ~/junit/test-results.xml
+          when: always
       - store_test_results:      
           path: ~/test-results
 
