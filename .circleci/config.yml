@@ -15,6 +15,6 @@ jobs:
         command: npm run test
 
 workflows:
- - build-test-deploy:
-    jobs:
-      - build-and-test
+ build-test-deploy:
+  jobs:
+    - build-and-test
