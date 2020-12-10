@@ -36,10 +36,13 @@ Assemble docker image
 DOCKER_LOGIN - as environment vas
 DOCKER_PWD 
 
-
 ---
 
 Deploy docker image to Docker Hub
+
+---
+
+make deploy depend on successful tests
 
 ---
 

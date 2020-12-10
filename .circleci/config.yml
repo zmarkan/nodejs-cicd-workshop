@@ -38,10 +38,11 @@ jobs:
             export IMAGE_NAME=$CIRCLE_PROJECT_REPONAME
             docker build -t $DOCKER_LOGIN/$IMAGE_NAME -t $DOCKER_LOGIN/$IMAGE_NAME:$TAG .
             echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
-            docker push $DOCKER_LOGIN/$IMAGE_NAME
 
 workflows:
  build-test-deploy:
   jobs:
     - build-and-test
-    - deploy 
+    - deploy:
+        requires:
+          - build-and-test
