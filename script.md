@@ -11,6 +11,14 @@ Run the tests locally
 
 CircleCI basic config:
 
+
+jobs: build
+docker image circleci/node:12
+
+checkout 
+install npm deps
+npm run test
+
 One job, one executor
 Run test only
 Store tests artifacts
