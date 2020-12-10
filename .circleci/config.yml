@@ -24,6 +24,20 @@ jobs:
       - store_test_results:
           path: ~/test-results
 
+  vuln_scan:
+    docker:
+      - image: shiftleft/sast-scan
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Perform Scan
+          command: |
+            scan --build
+      - store_artifacts:
+          path: reports
+          destination: sast-scan-reports             
+
   deploy:
     docker:
       - image: circleci/node:12
@@ -39,19 +53,7 @@ jobs:
             docker build -t $DOCKER_LOGIN/$IMAGE_NAME -t $DOCKER_LOGIN/$IMAGE_NAME:$TAG .
             echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
 
-  vuln_scan:
-    docker:
-      - image: shiftleft/sast-scan
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - run:
-          name: Perform Scan
-          command: |
-            scan --build
-      - store_artifacts:
-          path: reports
-          destination: sast-scan-reports   
+
 
 workflows:
  build_test_deploy:
