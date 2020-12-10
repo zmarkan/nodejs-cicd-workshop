@@ -19,7 +19,7 @@ jobs:
           environment:
             MOCHA_FILE: ~/test-results/test-results.xml
       - store_test_results:      
-          path: test-results
+          path: ~/test-results
 
 workflows:
  build-test-deploy:
