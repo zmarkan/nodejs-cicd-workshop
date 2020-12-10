@@ -39,10 +39,27 @@ jobs:
             docker build -t $DOCKER_LOGIN/$IMAGE_NAME -t $DOCKER_LOGIN/$IMAGE_NAME:$TAG .
             echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
 
+  vuln_scan:
+    docker:
+      - image: shiftleft/sast-scan
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Perform Scan
+          command: |
+            scan --build
+      - store_artifacts:
+          path: reports
+          destination: sast-scan-reports   
+
 workflows:
  build-test-deploy:
   jobs:
     - build-and-test
-    - deploy:
+    - vuln_scan:
         requires:
           - build-and-test
+    - deploy:
+        requires:
+          - vuln_scan
