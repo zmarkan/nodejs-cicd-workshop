@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
-          command: npm install
+          command: sudo npm install -g
       - run:
           name: Run unit tests
           command: ./node_modules/mocha/bin/mocha test --reporter mocha-junit-reporter
@@ -18,6 +18,8 @@ jobs:
           command: |
             mkdir ~/test-results
             cp test-results.xml ~/test-results/
+      - store_test_results:
+          path: ~/test-results
       - store_test_results:
           path: ~/test-results
 workflows:
