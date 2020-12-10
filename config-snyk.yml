@@ -1,6 +1,6 @@
   vuln_scan:
     docker:
-      - image: shiftleft/sast-scan
+      - image: shiftleft/scan-oss
     working_directory: ~/repo
     steps:
       - checkout
