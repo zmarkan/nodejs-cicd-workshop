@@ -10,15 +10,16 @@ jobs:
       - run:
           name: Install dependencies
           command: npm install
-      - run: mkdir ~/junit
       - run:
           name: Run unit tests
           command: ./node_modules/mocha/bin/mocha test --reporter mocha-junit-reporter
-          environment:
-            MOCHA_FILE: ~/junit/test-results.xml
-          when: always
+      - run:
+          name: Copy tests results for storing
+          command: |
+            mkdir ~/test-results
+            cp test-results.xml ~/test-results/
       - store_test_results:
-          path: ~/junit
+          path: ~/test-results
 workflows:
  build-test-deploy:
   jobs:
