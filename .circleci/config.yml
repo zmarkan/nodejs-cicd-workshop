@@ -11,9 +11,9 @@ jobs:
           name: Install dependencies
           command: npm install
       - run: 
-        name: Run Unit Tests
-        command: |
-          ./node_modules/mocha/bin/mocha test/ --reporter mochawesome --reporter-options reportDir=test-results,reportFilename=test-results
+          name: Run Unit Tests
+          command: |
+            ./node_modules/mocha/bin/mocha test/ --reporter mochawesome --reporter-options reportDir=test-results,reportFilename=test-results
       - store_test_results:      
           path: test-results
 workflows:
