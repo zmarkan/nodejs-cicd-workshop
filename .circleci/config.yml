@@ -17,9 +17,8 @@ jobs:
           environment:
             MOCHA_FILE: ~/junit/test-results.xml
           when: always
-      - store_test_results:      
-          path: ~/test-results
-
+      - store_test_results:
+          path: ~/junit
 workflows:
  build-test-deploy:
   jobs:
