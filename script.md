@@ -27,10 +27,15 @@ Store tests artifacts
 --- 
 
 show orb instead...
+//TODO
 
 ---
 
 Assemble docker image
+
+DOCKER_LOGIN - as environment vas
+DOCKER_PWD 
+
 
 ---
 
