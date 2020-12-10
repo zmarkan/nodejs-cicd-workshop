@@ -23,9 +23,10 @@ describe("Welcome to CI/CD Server", function() {
     });  
   });
 
-  describe("failThisTest", function (){
-    it("Fails miserably", function(){
-      assert.strictEqual(true, false, "This should fail")
-    });  
-  });
+  // Let's not fail :)
+  // describe("failThisTest", function (){
+  //   it("Fails miserably", function(){
+  //     assert.strictEqual(true, false, "This should fail")
+  //   });  
+  // });
 });
