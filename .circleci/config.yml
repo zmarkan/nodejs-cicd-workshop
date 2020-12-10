@@ -2,7 +2,7 @@
 version: 2.1
 
 jobs:
-  build-and-test:
+  build_and_test:
     docker:
       - image: circleci/node:12
     steps:
@@ -54,12 +54,16 @@ jobs:
           destination: sast-scan-reports   
 
 workflows:
- build-test-deploy:
+ build_test_deploy:
   jobs:
-    - build-and-test
+    - build_and_test
     - vuln_scan:
         requires:
-          - build-and-test
-    - deploy:
+          - build_and_test
+    - manual_check:
+        type: approval
         requires:
           - vuln_scan
+    - deploy:
+        requires:
+          - manual_check
