@@ -42,4 +42,8 @@ Run vulnerability scan
 
 ---
 
+manual accept
+
+---
+
 Summary

@@ -13,3 +13,8 @@ jobs:
      - run: 
         name: Run Unit Tests
         command: npm run test
+
+workflows:
+ - build-test-deploy:
+    jobs:
+      - build-and-test
